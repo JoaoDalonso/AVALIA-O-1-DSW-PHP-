@@ -1,0 +1,18 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
+<p>Bem-vindo, <?php echo $_SESSION["usuario"]; ?>!</p>
+
+<a href="cadastro_livro.php">Cadastrar Livro</a> |
+<a href="cadastro_pedido.php">Cadastrar Pedido</a> |
+<a href="visualiza_livro.php">Visualizar Livros</a> |
+<?php if ($_SESSION["usuario"] == "biblio") { ?>
+    <a href="vizualiza_pedidos.php">Visualizar Pedidos</a> |
+<?php } ?>
+<a href="logout.php">Logout</a>
