@@ -1,0 +1,21 @@
+<?php
+session_start();
+if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "biblio") {
+    header("Location: login.php");
+    exit;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $livros = $_POST["titulo"] . "|" . $_POST["autor"] . "|" . $_POST["editora"] . "|" . $_POST["isbn"] . "\n";
+    file_put_contents("livros.txt", $livros);
+    echo "Livro registrado!";
+}
+?>
+
+<form method="POST">
+    <input type="text" name="titulo" placeholder="Título" required>
+    <input type="text" name="autor" placeholder="Autor" required>
+    <input type="text" name="editora" placeholder="Editora" required>
+    <input type="text" name="isbn" placeholder="ISBN" required>
+    <button type="submit">Cadastrar livro</button>
+</form>
