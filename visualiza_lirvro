@@ -1,0 +1,17 @@
+<?php
+session_start();
+if (!isset($_SESSION["usuario"])) {
+    header("Location: login.php");
+    exit;
+}
+
+if (file_exists("livros.txt")) {
+    $livros = file("livros.txt");
+    foreach ($livros as $livros) {
+        list($titulo, $autor, $editora, $isbn) = explode("|", trim($livros));
+        echo "<p><strong>$titulo</strong> - $autor ($editora) ISBN: $isbn</p>";
+    }
+} else {
+    echo "Nenhum livro cadastrado.";
+}
+?>
