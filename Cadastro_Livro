@@ -7,7 +7,7 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "biblio") {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $livros = $_POST["titulo"] . "|" . $_POST["autor"] . "|" . $_POST["editora"] . "|" . $_POST["isbn"] . "\n";
-    file_put_contents("livros.txt", $livros);
+    file_put_contents("livros.txt", $livros, FILE_APPEND);
     echo "Livro registrado!";
 }
 ?>
