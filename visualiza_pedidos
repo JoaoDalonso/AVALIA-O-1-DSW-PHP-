@@ -1,0 +1,17 @@
+<?php
+session_start();
+if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "biblio") {
+    header("Location: login.php");
+    exit;
+}
+
+if (file_exists("pedidos.txt")) {
+    $pedidos = file("pedidos.txt");
+    foreach ($pedidos as $pedidos) {
+        list($titulo, $autor, $editora, $isbn) = explode("|", trim($pedidos));
+        echo "<p><strong>$titulo</strong> - $autor ($editora) ISBN: $isbn</p>";
+    }
+} else {
+    echo "Nenhum livro pedido.";
+}
+?>
