@@ -7,7 +7,7 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "professor") {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pedido = $_POST["titulo"] . "|" . $_POST["autor"] . "|" . $_POST["editora"] . "|" . $_POST["isbn"] . "\n";
-    file_put_contents("pedidos.txt", $pedido);
+    file_put_contents("pedidos.txt", $pedido, FILE_APEND);
     echo "Pedido registrado!";
 }
 ?>
